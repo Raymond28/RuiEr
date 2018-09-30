@@ -1,6 +1,8 @@
 package com.example.fox28.ruier.patient.activity;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -21,7 +23,7 @@ public class AddSinglePatientActivity extends BaseActivity {
     @BindView(R.id.rv_patient_list)
     RecyclerView mRvPatientList;        // RecyclerView，显示患者列表
 
-    private List<PSinglePatientEntity> mList;
+    private ArrayList<PSinglePatientEntity> mList;
     private PatientListAdapter mAdapter;
 
 
@@ -48,6 +50,10 @@ public class AddSinglePatientActivity extends BaseActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRvPatientList.setAdapter(mAdapter);
         mRvPatientList.setLayoutManager(manager);
+        //添加自定义分割线
+        DividerItemDecoration divider = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(this,R.drawable.custom_divider));
+        mRvPatientList.addItemDecoration(divider);
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
 import com.example.fox28.ruier.utils.Constants;
 import com.example.fox28.ruier.utils.MFGT;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PatientListAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<PSinglePatientEntity> mList;
+    private ArrayList<PSinglePatientEntity> mList;
 
     /**
      * RecyclerView列表项的类型：分别对应页脚和其他列表项
@@ -42,9 +43,11 @@ public class PatientListAdapter extends RecyclerView.Adapter {
 
     private boolean isMore;     // 标识符，数据是否加载完毕
 
-    public PatientListAdapter(Context context, List<PSinglePatientEntity> list) {
+    public PatientListAdapter(Context context, ArrayList<PSinglePatientEntity> list) {
         mContext = context;
-        mList = list;
+        if (list != null) {
+            mList = (ArrayList<PSinglePatientEntity>) list.clone();
+        }
     }
 
     /**
@@ -52,9 +55,11 @@ public class PatientListAdapter extends RecyclerView.Adapter {
      *
      * @param list
      */
-    public void setList(List<PSinglePatientEntity> list) {
-        mList = list;
-        notifyDataSetChanged();
+    public void setList(ArrayList<PSinglePatientEntity> list) {
+        if (list != null) {
+            mList = (ArrayList<PSinglePatientEntity>) list.clone();
+            notifyDataSetChanged();
+        }
     }
 
     @Override
