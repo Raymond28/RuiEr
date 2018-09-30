@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.example.fox28.ruier.patient.activity.AddGroupActivity;
 import com.example.fox28.ruier.patient.activity.AddPatientActivity;
+import com.example.fox28.ruier.patient.activity.AddSinglePatientActivity;
 
 
 /**
@@ -74,6 +75,14 @@ public class MFGT {
      */
     public static void gotoAddGroup(Activity activity) {
         startActivity(activity, AddGroupActivity.class);
+    }
+
+    /**
+     * 跳转添加分组界面
+     * @param activity
+     */
+    public static void gotoAddSinglePatientForResult(Activity activity, int requestCode) {
+        startActivityForResult(activity, AddSinglePatientActivity.class, requestCode);
     }
 
 

@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".patient.activity.AddPatientActivity" />
-        <activity android:name=".patient.activity.AddGroupActivity"/>
+        <activity android:name=".patient.activity.AddGroupActivity" />
+        <activity android:name=".patient.activity.AddSinglePatientActivity"/>
     </application>
 
 </manifest>

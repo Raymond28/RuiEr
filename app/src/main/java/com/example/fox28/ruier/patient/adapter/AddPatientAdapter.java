@@ -1,5 +1,6 @@
 package com.example.fox28.ruier.patient.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.fox28.ruier.R;
 import com.example.fox28.ruier.patient.model.bean.PGroupMemberEntity;
+import com.example.fox28.ruier.utils.MFGT;
 
 import java.util.List;
 
@@ -39,6 +41,8 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
     public static final int TYPE_ITEM = 909;
 
     private boolean mIsDelete;  // true，代表单击"-"按钮、进入可删除状态
+
+    public static final int ADD_PATIENT_REQUEST_CODE = 101;
 
 
 
@@ -113,8 +117,7 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
             holder.rl_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo 监听事件
-                    Toast.makeText(mContext, "单击增加患者按钮——跳转新页面", Toast.LENGTH_SHORT).show();
+                    MFGT.gotoAddSinglePatientForResult((Activity) mContext, ADD_PATIENT_REQUEST_CODE);
                 }
             });
             return;

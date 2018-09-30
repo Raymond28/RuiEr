@@ -69,6 +69,6 @@ public class AddGroupActivity extends BaseActivity {
     @Override
     protected void setContentLayout() {
         super.setContentLayout();
-        setContentView(R.layout.activity_add_group);
+        setContentView(R.layout.p_activity_add_group);
     }
 }
