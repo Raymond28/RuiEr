@@ -1,12 +1,14 @@
 package com.example.fox28.ruier.patient.model.bean;
 
+import java.io.Serializable;
+
 /**
  * @Description:
  * @Author: Scorpion
  * @Date: 2018/10/1 01:22
  * @Tags:
  */
-public class PSinglePatientEntity {
+public class PSinglePatientEntity implements Serializable{
 
     private String name;
     private String url;

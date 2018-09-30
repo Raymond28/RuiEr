@@ -1,5 +1,6 @@
 package com.example.fox28.ruier.patient.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.example.fox28.base.BaseActivity;
 import com.example.fox28.ruier.R;
 import com.example.fox28.ruier.patient.adapter.AddGroupAdapter;
 import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
+import com.example.fox28.ruier.utils.Constants;
 import com.example.fox28.ruier.utils.DataFactory;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class AddGroupActivity extends BaseActivity {
     @BindView(R.id.recyc_view)
     RecyclerView mRecycView;           // 患者头像
 
-    private List<PSinglePatientEntity> mList;     // 数据集
+    private ArrayList<PSinglePatientEntity> mList;     // 数据集
     private AddGroupAdapter mAdpater;        // 适配器
 
     @Override
@@ -37,7 +39,7 @@ public class AddGroupActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        mList = DataFactory.obtainListDataForPatientList(11);
+        mList = DataFactory.obtainListDataForPatientList(3);
         mAdpater.setList(mList);
     }
 
@@ -70,5 +72,19 @@ public class AddGroupActivity extends BaseActivity {
     protected void setContentLayout() {
         super.setContentLayout();
         setContentView(R.layout.p_activity_add_group);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.ADD_PATIENT_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // 获得返回数据
+                PSinglePatientEntity entity = (PSinglePatientEntity) data.getSerializableExtra(Constants.KEY_ADD_PATIENT_INTENT_RESULT);
+                // 更新数据集并刷新数据
+                mList.add(entity);
+                mAdpater.setList(mList);
+            }
+        }
     }
 }

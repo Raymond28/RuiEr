@@ -14,8 +14,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.fox28.ruier.R;
 import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
+import com.example.fox28.ruier.utils.Constants;
 import com.example.fox28.ruier.utils.MFGT;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AddGroupAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<PSinglePatientEntity> mList;
+    private ArrayList<PSinglePatientEntity> mList;
 
     /**
      * RecyclerView列表项的类型：分别对应 "+"按钮，删除按钮，病人分组成员
@@ -42,26 +44,29 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
 
     private boolean mIsDelete;  // true，代表单击"-"按钮、进入可删除状态
 
-    public static final int ADD_PATIENT_REQUEST_CODE = 101;
 
 
 
-    public AddGroupAdapter(Context context, List<PSinglePatientEntity> list) {
+    public AddGroupAdapter(Context context, ArrayList<PSinglePatientEntity> list) {
         mContext = context;
-        list.add(new PSinglePatientEntity());
-        list.add(new PSinglePatientEntity());
-        mList = list;
+        if (list!=null){
+            mList =  (ArrayList<PSinglePatientEntity>)list.clone();
+            mList.add(new PSinglePatientEntity());
+            mList.add(new PSinglePatientEntity());
+        }
     }
 
     /**
      * 刷新数据
      * @param list
      */
-    public void setList(List<PSinglePatientEntity> list) {
-        list.add(new PSinglePatientEntity());
-        list.add(new PSinglePatientEntity());
-        mList = list;
-        notifyDataSetChanged();
+    public void setList(ArrayList<PSinglePatientEntity> list) {
+        if (list!=null){
+            mList = (ArrayList<PSinglePatientEntity>) list.clone();
+            mList.add(new PSinglePatientEntity());
+            mList.add(new PSinglePatientEntity());
+            notifyDataSetChanged();
+        }
     }
 
     /**
@@ -117,7 +122,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
             holder.rl_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MFGT.gotoAddSinglePatientForResult((Activity) mContext, ADD_PATIENT_REQUEST_CODE);
+                    MFGT.gotoAddSinglePatientForResult((Activity) mContext, Constants.ADD_PATIENT_REQUEST_CODE);
                 }
             });
             return;

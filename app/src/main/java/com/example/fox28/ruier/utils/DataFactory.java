@@ -22,8 +22,8 @@ public class DataFactory {
      * @param size
      * @return
      */
-    public static List<PSinglePatientEntity> obtainListDataForPatientList(int size) {
-        List<PSinglePatientEntity> list = new ArrayList<>();
+    public static ArrayList<PSinglePatientEntity> obtainListDataForPatientList(int size) {
+        ArrayList<PSinglePatientEntity> list = new ArrayList<>();
         for(int i=0; i<size; i++) {
             PSinglePatientEntity entity = new PSinglePatientEntity();
             entity.setName("病人" + i);

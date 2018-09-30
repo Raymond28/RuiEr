@@ -1,6 +1,8 @@
 package com.example.fox28.ruier.patient.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.fox28.ruier.R;
 import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
+import com.example.fox28.ruier.utils.Constants;
+import com.example.fox28.ruier.utils.MFGT;
 
 import java.util.List;
 
@@ -88,14 +92,18 @@ public class PatientListAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this, view);
         }
 
-        public void refreshUI(PSinglePatientEntity entity) {
+        public void refreshUI(final PSinglePatientEntity entity) {
             if(entity==null) return;
             mIvSelect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mIvSelect.setImageResource(R.mipmap.patient_select_s);
-                    // todo 返回添加分组界面，并且传递实体类
-                    Toast.makeText(mContext, "传递实体类", Toast.LENGTH_LONG).show();
+                    //  返回添加分组界面，并且传递实体类
+                    Intent intent = new Intent();
+                    intent.putExtra(Constants.KEY_ADD_PATIENT_INTENT_RESULT, entity);
+                    ((Activity)mContext).setResult(Activity.RESULT_OK, intent);
+                    MFGT.finish((Activity) mContext);
+
                 }
             });
             mTvNamePL.setText(entity.getName());
