@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.example.fox28.base.BaseActivity;
 import com.example.fox28.ruier.R;
-import com.example.fox28.ruier.patient.adapter.AddPatientAdapter;
-import com.example.fox28.ruier.patient.model.bean.PGroupMemberEntity;
+import com.example.fox28.ruier.patient.adapter.AddGroupAdapter;
+import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
 import com.example.fox28.ruier.utils.DataFactory;
 
 import java.util.ArrayList;
@@ -25,8 +25,8 @@ public class AddGroupActivity extends BaseActivity {
     @BindView(R.id.recyc_view)
     RecyclerView mRecycView;           // 患者头像
 
-    private List<PGroupMemberEntity> mList;     // 数据集
-    private AddPatientAdapter mAdpater;        // 适配器
+    private List<PSinglePatientEntity> mList;     // 数据集
+    private AddGroupAdapter mAdpater;        // 适配器
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class AddGroupActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        mList = DataFactory.obtainListDataForAddGroup(10);
+        mList = DataFactory.obtainListDataForPatientList(11);
         mAdpater.setList(mList);
     }
 
@@ -60,7 +60,7 @@ public class AddGroupActivity extends BaseActivity {
 
         // 绑定适配器
         mList = new ArrayList<>();
-        mAdpater = new AddPatientAdapter(this, mList);
+        mAdpater = new AddGroupAdapter(this, mList);
         GridLayoutManager manager = new GridLayoutManager(this, 4);
         mRecycView.setLayoutManager(manager);
         mRecycView.setAdapter(mAdpater);

@@ -1,6 +1,5 @@
 package com.example.fox28.ruier.utils;
 
-import com.example.fox28.ruier.patient.model.bean.PGroupMemberEntity;
 import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
 
 import java.text.SimpleDateFormat;
@@ -19,19 +18,7 @@ public class DataFactory {
 
     /**
      * 添加分组页面，生成adapter的模拟数据集
-     * @param size
-     * @return
-     */
-    public static List<PGroupMemberEntity> obtainListDataForAddGroup(int size) {
-        List<PGroupMemberEntity> list = new ArrayList<>();
-        for(int i=0; i<size; i++) {
-            PGroupMemberEntity entity = new PGroupMemberEntity("病人" + i);
-            list.add(entity);
-        }
-        return list;
-    }
-    /**
-     * 添加分组页面，生成adapter的模拟数据集
+     * 添加分组成员页面，生成adapter的模拟数据集
      * @param size
      * @return
      */

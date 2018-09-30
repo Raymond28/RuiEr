@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fox28.ruier.R;
-import com.example.fox28.ruier.patient.model.bean.PGroupMemberEntity;
+import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
 import com.example.fox28.ruier.utils.MFGT;
 
 import java.util.List;
@@ -28,10 +28,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * @Date: 2018/9/24 23:35
  * @Tags:
  */
-public class AddPatientAdapter extends RecyclerView.Adapter {
+public class AddGroupAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
-    private List<PGroupMemberEntity> mList;
+    private List<PSinglePatientEntity> mList;
 
     /**
      * RecyclerView列表项的类型：分别对应 "+"按钮，删除按钮，病人分组成员
@@ -46,10 +46,10 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
 
 
 
-    public AddPatientAdapter(Context context, List<PGroupMemberEntity> list) {
+    public AddGroupAdapter(Context context, List<PSinglePatientEntity> list) {
         mContext = context;
-        list.add(new PGroupMemberEntity());
-        list.add(new PGroupMemberEntity());
+        list.add(new PSinglePatientEntity());
+        list.add(new PSinglePatientEntity());
         mList = list;
     }
 
@@ -57,9 +57,9 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
      * 刷新数据
      * @param list
      */
-    public void setList(List<PGroupMemberEntity> list) {
-        list.add(new PGroupMemberEntity());
-        list.add(new PGroupMemberEntity());
+    public void setList(List<PSinglePatientEntity> list) {
+        list.add(new PSinglePatientEntity());
+        list.add(new PSinglePatientEntity());
         mList = list;
         notifyDataSetChanged();
     }
@@ -188,7 +188,7 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
         }
 
         // 刷新UI
-       public void refreshUI(final List<PGroupMemberEntity> list, final int position) {
+       public void refreshUI(final List<PSinglePatientEntity> list, final int position) {
             if(list.get(position)==null) return;
             mTvName.setText(list.get(position).getName());
             mIvDelete.setVisibility(mIsDelete ? View.VISIBLE : View.GONE);
