@@ -2,9 +2,10 @@ package com.example.fox28.ruier.patient.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.fox28.base.BaseActivity;
 import com.example.fox28.ruier.R;
@@ -44,6 +45,19 @@ public class AddGroupActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         initToolBar("添加分组");
+        // 添加保存按钮
+        TextView btn = new TextView(this);
+        // todo 设置位置信息
+        btn.setText("保存");
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // todo 在下面方法中设置保存的网络请求
+                mAdpater.setConfirm();
+            }
+        });
+        addViewToToolbar(btn);
+
         // 绑定适配器
         mList = new ArrayList<>();
         mAdpater = new AddPatientAdapter(this, mList);

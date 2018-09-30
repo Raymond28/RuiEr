@@ -31,6 +31,17 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<PGroupMemberEntity> mList;
 
+    /**
+     * RecyclerView列表项的类型：分别对应 "+"按钮，删除按钮，病人分组成员
+     */
+    public static final int TYPE_DELETE = 911;
+    public static final int TYPE_ADD = 910;
+    public static final int TYPE_ITEM = 909;
+
+    private boolean mIsDelete;  // true，代表单击"-"按钮、进入可删除状态
+
+
+
     public AddPatientAdapter(Context context, List<PGroupMemberEntity> list) {
         mContext = context;
         list.add(new PGroupMemberEntity());
@@ -50,13 +61,13 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
     }
 
     /**
-     * RecyclerView列表项的类型：分别对应 "+"按钮，删除按钮，病人分组成员
+     * 隐藏列表项删除图标、刷新UI、todo 发起网络请求
      */
-    public static final int TYPE_DELETE = 911;
-    public static final int TYPE_ADD = 910;
-    public static final int TYPE_ITEM = 909;
+    public void setConfirm() {
+        mIsDelete = false;
+        notifyDataSetChanged();
 
-    private boolean mIsDelete;  // true，代表单击"-"按钮、进入可删除状态
+    }
 
 
 
@@ -89,7 +100,6 @@ public class AddPatientAdapter extends RecyclerView.Adapter {
             holder.rl_parent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // todo 监听事件
                     Toast.makeText(mContext, "单击删除患者按钮", Toast.LENGTH_SHORT).show();
                     mIsDelete = true;
                     notifyDataSetChanged();     // 全局刷新数据
