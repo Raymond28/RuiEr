@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.example.fox28.ruier.patient.activity.AddGroupActivity;
 import com.example.fox28.ruier.patient.activity.AddPatientActivity;
 import com.example.fox28.ruier.patient.activity.AddSinglePatientActivity;
+import com.example.fox28.ruier.patient.activity.NoticeUpdateInfoActivity;
 
 
 /**
@@ -78,11 +79,19 @@ public class MFGT {
     }
 
     /**
-     * 跳转添加分组界面
+     * 跳转添加患者界面
      * @param activity
      */
     public static void gotoAddSinglePatientForResult(Activity activity, int requestCode) {
         startActivityForResult(activity, AddSinglePatientActivity.class, requestCode);
+    }
+
+    /**
+     * 跳转提醒完善信息界面
+     * @param activity
+     */
+    public static void gotoNoticeUpdateInfo(Activity activity) {
+        startActivity(activity, NoticeUpdateInfoActivity.class);
     }
 
 

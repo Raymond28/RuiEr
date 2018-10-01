@@ -38,15 +38,25 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#666</item>
     </style>
+    <!--字体style 14sp orange-->
+    <style name="style_14_orange">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/base_color</item>
+    </style>
     <!--字体style 12sp #999-->
     <style name="style_12_999">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#999</item>
     </style>
-    <!--字体style 16sp #fff-->
+    <!--字体style 16sp #fff 长按钮字体-->
     <style name="style_16_fff">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">#fff</item>
+    </style>
+    <!--字体style 16sp #666 标题-->
+    <style name="style_16_666">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#666</item>
     </style>
 
 </resources>

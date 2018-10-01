@@ -56,6 +56,7 @@ public class PatientManagerFragment extends Fragment {
             case R.id.ll_patientgroup_manager:  //分组管理
                 break;
             case R.id.ll_notice:        // 通知完善信息
+            MFGT.gotoNoticeUpdateInfo(getActivity());
                 break;
         }
     }

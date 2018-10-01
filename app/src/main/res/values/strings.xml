@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">RuiEr</string>
+
+    <string name="notice_txt">
+        你好！我是北京阜外医院的医师黄埔云海\n
+        最近情况如何？是否已经恢复？有问题可以直接问我，\n
+        不用上医院排队。\n
+        现在完善信息，就可以给我发消息了。\n\n
+        患者姓名：XXX
+        时间：XXXX年XX月XX日
+    </string>
 </resources>
