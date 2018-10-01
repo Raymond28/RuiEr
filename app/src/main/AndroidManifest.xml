@@ -21,6 +21,7 @@
         <activity android:name=".patient.activity.AddGroupActivity" />
         <activity android:name=".patient.activity.AddSinglePatientActivity"/>
         <activity android:name=".patient.activity.NoticeUpdateInfoActivity"/>
+        <activity android:name=".patient.activity.GroupManageActivity"/>
     </application>
 
 </manifest>

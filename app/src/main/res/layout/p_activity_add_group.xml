@@ -4,44 +4,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base_bg"
-    android:orientation="vertical"
-    tools:context=".patient.activity.AddGroupActivity"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".patient.activity.AddGroupActivity">
 
     <include layout="@layout/base_tool_bar" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="12dp"
-        android:text="分组名称" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_name"
-        style="@style/style_14_999"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/white"
-        android:hint="如科室：儿科"
-        android:paddingLeft="12dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="12dp"
-        android:text="分组成员" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:text="分组名称" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyc_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="25dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        />
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/style_14_999"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/white"
+                android:hint="如科室：儿科"
+                android:paddingLeft="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:text="分组成员" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyc_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="25dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                style="@style/style_16_fff"
+                android:layout_width="280dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/p_btn_orange_22"
+                android:text="删除"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
