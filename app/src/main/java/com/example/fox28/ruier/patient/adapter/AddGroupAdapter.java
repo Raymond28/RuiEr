@@ -50,9 +50,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
     public AddGroupAdapter(Context context, ArrayList<PSinglePatientEntity> list) {
         mContext = context;
         if (list!=null){
-            mList =  (ArrayList<PSinglePatientEntity>)list.clone();
-            mList.add(new PSinglePatientEntity());
-            mList.add(new PSinglePatientEntity());
+            mList = list;
         }
     }
 
@@ -62,9 +60,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
      */
     public void setList(ArrayList<PSinglePatientEntity> list) {
         if (list!=null){
-            mList = (ArrayList<PSinglePatientEntity>) list.clone();
-            mList.add(new PSinglePatientEntity());
-            mList.add(new PSinglePatientEntity());
+            mList = list;
             notifyDataSetChanged();
         }
     }
@@ -137,7 +133,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mList==null? 0 : mList.size();
+        return mList==null? 2 : mList.size()+2;
     }
 
     /**
@@ -147,9 +143,9 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
      */
     @Override
     public int getItemViewType(int position) {
-        if (position == mList.size() - 1) {
+        if (position == mList.size() + 1) {
             return TYPE_DELETE;
-        } else if (position == mList.size()-2 ) {
+        } else if (position == mList.size()) {
             return TYPE_ADD;
         } else {
             return TYPE_ITEM;
@@ -202,8 +198,8 @@ public class AddGroupAdapter extends RecyclerView.Adapter {
                 public void onClick(View view) {
                     // 更新数据
                     list.remove(position);
-                    // 局部刷新
-                    notifyItemRemoved(position);
+                    // 全部刷新
+                    notifyDataSetChanged();
                 }
             });
            Glide.with(mContext)
