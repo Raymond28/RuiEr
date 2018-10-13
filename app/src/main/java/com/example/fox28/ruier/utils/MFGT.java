@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.example.fox28.ruier.patient.activity.AddGroupActivity;
 import com.example.fox28.ruier.patient.activity.AddPatientActivity;
 import com.example.fox28.ruier.patient.activity.AddSinglePatientActivity;
+import com.example.fox28.ruier.patient.activity.GroupListActivity;
 import com.example.fox28.ruier.patient.activity.GroupManageActivity;
 import com.example.fox28.ruier.patient.activity.NoticeUpdateInfoActivity;
 
@@ -93,6 +94,14 @@ public class MFGT {
      */
     public static void gotoGroupManage(Activity activity) {
         startActivity(activity, GroupManageActivity.class);
+    }
+
+    /**
+     * 跳转分组列表界面
+     * @param activity
+     */
+    public static void gotoGroupList(Activity activity) {
+        startActivity(activity, GroupListActivity.class);
     }
 
     /**

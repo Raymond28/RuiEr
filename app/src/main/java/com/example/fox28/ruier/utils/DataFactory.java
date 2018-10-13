@@ -1,5 +1,6 @@
 package com.example.fox28.ruier.utils;
 
+import com.example.fox28.ruier.patient.model.bean.PGroupEntity;
 import com.example.fox28.ruier.patient.model.bean.PSinglePatientEntity;
 
 import java.text.SimpleDateFormat;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Description: 生成模拟数据的工具类
@@ -35,6 +37,23 @@ public class DataFactory {
             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
             entity.setStartTime(sdf.format(calendar.getTime()));
 
+            list.add(entity);
+        }
+        return list;
+    }
+
+    /**
+     * 分组管理页面，生成adapter的模拟数据集
+     * @param size
+     * @return
+     */
+    public static ArrayList<PGroupEntity> obtainListDataForGroupList(int size) {
+        ArrayList<PGroupEntity> list = new ArrayList<>();
+        Random random = new Random();
+        for (int i=0; i<size; i++) {
+            PGroupEntity entity = new PGroupEntity();
+            entity.setName("分组"+i);
+            entity.setNum(String.valueOf(random.nextInt(10) + 1));
             list.add(entity);
         }
         return list;
