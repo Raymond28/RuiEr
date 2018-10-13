@@ -2,16 +2,17 @@ package com.example.fox28.ruier.patient.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.fox28.ruier.R;
+import com.example.fox28.ruier.patient.activity.GroupManageActivity;
 import com.example.fox28.ruier.patient.model.bean.PGroupEntity;
 import com.example.fox28.ruier.utils.MFGT;
 
@@ -48,16 +49,18 @@ public class GroupListAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder parentHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder parentHolder, final int position) {
         ViewHolder holder = (ViewHolder) parentHolder;
         holder.refreshUI(mList.get(position));
         holder.mRlItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 跳转编辑分组界面
-                // todo 需要传递数据 患者数据 list
+                // todo 需要传递数据 患者数据 list， 目前只传递size
                 Log.e("main", "开始单击事件了 ， ， ， ， ， ， ");
-                MFGT.gotoGroupManage((Activity) mContext);
+                Intent intent = new Intent(mContext, GroupManageActivity.class);
+                intent.putExtra(GroupManageActivity.KEY_SIZE, Integer.valueOf(mList.get(position).getNum()));
+                MFGT.gotoGroupManage((Activity) mContext, intent);
             }
         });
     }

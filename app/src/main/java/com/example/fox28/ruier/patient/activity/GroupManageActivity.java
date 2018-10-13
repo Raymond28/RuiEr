@@ -1,10 +1,12 @@
 package com.example.fox28.ruier.patient.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,10 @@ import butterknife.BindView;
  */
 public class GroupManageActivity extends BaseActivity {
 
+    private static final String TAG = "GroupManageActivity";
+
+    public static final String KEY_SIZE = "list_size";
+
     @BindView(R.id.et_name)
     EditText mEtName;               // 编辑分组名称，如门诊
     @BindView(R.id.recyc_view)
@@ -39,18 +45,31 @@ public class GroupManageActivity extends BaseActivity {
 
 
     private ArrayList<PSinglePatientEntity> mList;      // 数据集
-    private AddGroupAdapter mAdpater;                   // 适配器
+    private AddGroupAdapter mAdapter;                   // 适配器
+
+
+    // 临时变量
+    private int mTempSize;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        obtainIntentData(getIntent());
         super.onCreate(savedInstanceState);
+    }
+
+    /**
+     * 获得intent数据
+     * @param intent
+     */
+    private void obtainIntentData(Intent intent) {
+        mTempSize = intent.getIntExtra(KEY_SIZE, 1);
     }
 
     @Override
     protected void initData() {
         super.initData();
-        mList = DataFactory.obtainListDataForPatientList(10);
-        mAdpater.setList(mList);
+        mList = DataFactory.obtainListDataForPatientList(mTempSize);
+        mAdapter.setList(mList);
     }
 
     @Override
@@ -76,18 +95,20 @@ public class GroupManageActivity extends BaseActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // todo 在下面方法中设置保存的网络请求
-                mAdpater.setConfirm();
+                // todo 在下面方法中设置保存的网络请求，网络请求成功，返回分组列表
+                mAdapter.setConfirm();
+                // todo 下面的方法需要移到请求成功后执行
+                finish();
             }
         });
         addViewToToolbar(btn);
 
         // 绑定适配器
         mList = new ArrayList<>();
-        mAdpater = new AddGroupAdapter(this, mList);
+        mAdapter = new AddGroupAdapter(this, mList);
         GridLayoutManager manager = new GridLayoutManager(this, 4);
         mRecycView.setLayoutManager(manager);
-        mRecycView.setAdapter(mAdpater);
+        mRecycView.setAdapter(mAdapter);
     }
 
     @Override
@@ -99,14 +120,12 @@ public class GroupManageActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constants.ADD_PATIENT_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // 获得返回数据
-                PSinglePatientEntity entity = (PSinglePatientEntity) data.getSerializableExtra(Constants.KEY_ADD_PATIENT_INTENT_RESULT);
-                // 更新数据集并刷新数据
-                mList.add(entity);
-                mAdpater.setList(mList);
-            }
+        if (requestCode == Constants.ADD_PATIENT_REQUEST_CODE && resultCode == RESULT_OK) {
+            // 获得返回数据
+            PSinglePatientEntity entity = (PSinglePatientEntity) data.getSerializableExtra(Constants.KEY_ADD_PATIENT_INTENT_RESULT);
+            // 更新数据集并刷新数据
+            mList.add(entity);
+            mAdapter.setList(mList);
         }
     }
 }

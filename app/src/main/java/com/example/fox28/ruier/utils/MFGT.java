@@ -92,8 +92,8 @@ public class MFGT {
      * 跳转分组管理界面
      * @param activity
      */
-    public static void gotoGroupManage(Activity activity) {
-        startActivity(activity, GroupManageActivity.class);
+    public static void gotoGroupManage(Activity activity, Intent intent) {
+        startActivity(activity, intent);
     }
 
     /**
