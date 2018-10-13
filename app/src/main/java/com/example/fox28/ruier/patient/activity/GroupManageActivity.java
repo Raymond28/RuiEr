@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,19 +92,36 @@ public class GroupManageActivity extends BaseActivity {
         mEtName.setText("门诊门诊门诊");
 
         // 添加保存按钮
-        TextView btn = new TextView(this);
-        // todo 设置位置信息
-        btn.setText("保存");
-        btn.setOnClickListener(new View.OnClickListener() {
+//        TextView btn = new TextView(this);
+//        // todo 设置位置信息
+//        btn.setText("保存");
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // todo 在下面方法中设置保存的网络请求，网络请求成功，返回分组列表
+//                mAdapter.setConfirm();
+//                // todo 下面的方法需要移到请求成功后执行
+//                finish();
+//            }
+//        });
+//        addViewToToolbar(btn);
+
+        // 添加保存按钮
+        Toolbar toolbar = getToolbar();
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
-            public void onClick(View view) {
-                // todo 在下面方法中设置保存的网络请求，网络请求成功，返回分组列表
-                mAdapter.setConfirm();
-                // todo 下面的方法需要移到请求成功后执行
-                finish();
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_save:
+                        // todo 在下面方法中设置保存的网络请求，网络请求成功，返回分组列表
+                        mAdapter.setConfirm();
+                        // todo 下面的方法需要移到请求成功后执行
+                        finish();
+                        break;
+                }
+                return true;
             }
         });
-        addViewToToolbar(btn);
 
         // 绑定适配器
         mList = new ArrayList<>();
@@ -115,6 +135,13 @@ public class GroupManageActivity extends BaseActivity {
     protected void setContentLayout() {
         super.setContentLayout();
         setContentView(R.layout.p_activity_add_group);
+    }
+
+    //设置menu（右边文字）
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit_clinic, menu); //解析menu布局文件到menu
+        return true;
     }
 
     @Override

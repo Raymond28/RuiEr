@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,17 +52,19 @@ public class AddGroupActivity extends BaseActivity {
         super.initView();
         initToolBar("添加分组");
         // 添加保存按钮
-        TextView btn = new TextView(this);
-        // todo 设置位置信息
-        btn.setText("保存");
-        btn.setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = getToolbar();
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
-            public void onClick(View view) {
-                // todo 在下面方法中设置保存的网络请求
-                mAdpater.setConfirm();
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_save:
+                        // todo 在下面方法中设置保存的网络请求
+                        mAdpater.setConfirm();
+                        break;
+                }
+                return true;
             }
         });
-        addViewToToolbar(btn);
 
         // 绑定适配器
         mList = new ArrayList<>();
@@ -72,6 +78,13 @@ public class AddGroupActivity extends BaseActivity {
     protected void setContentLayout() {
         super.setContentLayout();
         setContentView(R.layout.p_activity_add_group);
+    }
+
+    //设置menu（右边文字）
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit_clinic, menu); //解析menu布局文件到menu
+        return true;
     }
 
     @Override
