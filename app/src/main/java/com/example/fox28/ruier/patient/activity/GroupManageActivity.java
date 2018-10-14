@@ -92,21 +92,6 @@ public class GroupManageActivity extends BaseActivity {
         mEtName.setText("门诊门诊门诊");
 
         // 添加保存按钮
-//        TextView btn = new TextView(this);
-//        // todo 设置位置信息
-//        btn.setText("保存");
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // todo 在下面方法中设置保存的网络请求，网络请求成功，返回分组列表
-//                mAdapter.setConfirm();
-//                // todo 下面的方法需要移到请求成功后执行
-//                finish();
-//            }
-//        });
-//        addViewToToolbar(btn);
-
-        // 添加保存按钮
         Toolbar toolbar = getToolbar();
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
